@@ -1,0 +1,59 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editando Comentario de {{object.nombre}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="{% url 'app1:editar' object.id %}"  method="post" novalidate>
+            {% csrf_token %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ form.nombre.label_tag }}
+                        {{ form.nombre }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div clases="col-md-9">
+                        {{ form.nombre.errors|linebreaks }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ form.email.label_tag }}
+                        {{ form.email }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                    </div>
+                    <div clases="col-md-9">
+                        {{ form.email.errors|linebreaks }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        {{ form.texto.label_tag }}
+                        {{ form.texto }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                    </div>
+                    <div clases="col-md-9">
+                        {{ form.texto.errors|linebreaks }}
+                    </div>
+                </div>
+                <br>
+                <input class="btn btn-success"  type="submit" value="Actualizar" href="{% url 'app1:prueba' %}">
+            </div>
+            
+            
+        </form>
+      </div>
+      
+    </div>
+  </div>

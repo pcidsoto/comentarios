@@ -1,0 +1,151 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comentarios</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <style>
+        .avatar_comentario {
+            width: 10%;
+        }
+
+        .eliminar {
+            border-radius: 60%;
+        }
+
+        body {
+            background-color: whitesmoke;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>CRUD Comentario</h1>
+        <br>
+        <div class="row">
+            <div class="col-sm-4 ">
+                <form action="" method="post" novalidate>
+                    {% csrf_token %}
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                {{ form.nombre.label_tag }}
+                                {{ form.nombre }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div clases="col-md-9">
+                                {{ form.nombre.errors|linebreaks }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                {{ form.email.label_tag }}
+                                {{ form.email }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div clases="col-md-9">
+                                {{ form.email.errors|linebreaks }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                {{ form.texto.label_tag }}
+                                {{ form.texto }}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                            </div>
+                            <div clases="col-md-9">
+                                {{ form.texto.errors|linebreaks }}
+                            </div>
+                        </div>
+                        <br>
+                        <input class="btn btn-success" type="submit" value="Crear">
+                    </div>
+
+
+                </form>
+            </div>
+
+            <div class="col-sm-8">
+                {% for row in comentarios %}
+
+                <div class="row align-items-center">
+                    <div class="col-2">
+
+                    </div>
+                    <div class="col-8">
+                        <div class="media mt-2 mb-2 p-2 rounded bg-info shadow">
+
+                            <div class="media-body">
+                                <div class="row">
+                                    <div class="col-10">
+                                        <h5 class="mt-0">{{row.id}}|{{row.nombre}}</h5>
+                                    </div>
+                                    <div class="col-2">
+                                        <div class="row">
+                                            <a class="col-6 btn btn-primary p-1 open-incident"
+                                                onclick="abrir_modal_edicion('{% url 'app1:editar' pk=row.id %}')"><small>Editar</small></a>
+                                            <a class="col-4 btn btn-danger ml-2 p-1 eliminar"
+                                                onclick="abrir_modal_eliminar('{% url 'app1:borrar' pk=row.id %}')">X</a>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+
+                                <p><small>{{row.fecha}}</small></p>
+                                <p class="mb-0">{{row.texto}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2">
+
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
+    </div>
+    <!--Modales-->
+    <div class="modal fade" id="edicion" role="dialog"></div>
+    <div class="modal fade" id="borrar" role="dialog"></div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    
+    <script type="text/javascript">
+        var $ = jQuery.noConflict();
+        function abrir_modal_edicion(url) {
+            $('#edicion').load(url, function () {
+                $(this).modal('show');
+            });
+        }
+
+        function abrir_modal_eliminar(url) {
+            $('#borrar').load(url, function () {
+                $(this).modal('show');
+            });
+        }
+    </script>
+  
+</body>
+
+</html>
