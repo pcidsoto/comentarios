@@ -7,7 +7,7 @@ class ComentarioForm(forms.ModelForm):
         model = Comentario
         widgets = {
             'nombre': forms.TextInput(attrs={'class': 'form-control'}),
-            'email': forms.TextInput(attrs={'class': 'form-control'}),
+            'email': forms.TextInput(attrs={'class': 'form-control', 'type':'email'}),
             'texto': forms.Textarea(attrs={'class': 'form-control'}),
         }
         #fields = '__all__'

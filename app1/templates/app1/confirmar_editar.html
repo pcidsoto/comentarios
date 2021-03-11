@@ -7,9 +7,12 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="{% url 'app1:editar' object.id %}"  method="post" novalidate>
+        <form id="form_edicion" action="{% url 'app1:editar' object.id %}"  method="post" novalidate>
             {% csrf_token %}
             <div class="container">
+                <div id="erroresEdicion">
+
+                </div>
                 <div class="row">
                     <div class="col-md-12">
                         {{ form.nombre.label_tag }}
@@ -48,7 +51,9 @@
                     </div>
                 </div>
                 <br>
-                <input class="btn btn-success"  type="submit" value="Actualizar" href="{% url 'app1:prueba' %}">
+                <button class="btn btn-danger" type="button" onclick="cerrar_modal_edicion();">Cancelar</button>
+                <button id="boton_creacion" class="btn btn-primary" type="button"
+                    onclick="editar();">Confirmar</button>
             </div>
             
             
