@@ -41,6 +41,7 @@ class EditarComentario(UpdateView):
             else:
                 mensaje = f'{self.model.__name__} no se ha podido actualizar!'
                 error = form.errors
+                print(error)
                 response = JsonResponse({'mensaje': mensaje, 'error': error})
                 response.status_code = 400
                 return response

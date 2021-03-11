@@ -10,44 +10,33 @@
         <form id="form_edicion" action="{% url 'app1:editar' object.id %}"  method="post" novalidate>
             {% csrf_token %}
             <div class="container">
-                <div id="erroresEdicion">
-
-                </div>
                 <div class="row">
                     <div class="col-md-12">
                         {{ form.nombre.label_tag }}
                         {{ form.nombre }}
+                        <div id="nombre_error">
+                            {# si existe un error se verá aquí #}
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div clases="col-md-9">
-                        {{ form.nombre.errors|linebreaks }}
-                    </div>
+                    
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                         {{ form.email.label_tag }}
                         {{ form.email }}
+                        <div id="email_error">
+                            {# si existe un error se verá aquí #}
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-3">
-                    </div>
-                    <div clases="col-md-9">
-                        {{ form.email.errors|linebreaks }}
-                    </div>
-                </div>
+
                 <div class="row">
                     <div class="col-md-12">
                         {{ form.texto.label_tag }}
                         {{ form.texto }}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-3">
-                    </div>
-                    <div clases="col-md-9">
-                        {{ form.texto.errors|linebreaks }}
+                        <div id="texto_error">
+                            {# si existe un error se verá aquí #}
+                        </div>
                     </div>
                 </div>
                 <br>

@@ -1,10 +1,22 @@
 function mostrarErroresEdicion(errores) {
-    $('#erroresEdicion').html("");
-    let error = "";
+    $('#nombre_error').html("");
+    $('#email_error').html("");
+    $('#texto_error').html("");
+    
     for (let item in errores.responseJSON.error) {
-        error += '<div class = "alert alert-danger" <strong>' + errores.responseJSON.error[item] + '</strong></div>';
+        
+        let error = "";
+        if (item=='nombre') {
+            error += '<div class = "alert alert-danger" <strong>' + errores.responseJSON.error[item] + '</strong></div>';
+            $('#nombre_error').append(error);
+        } else if (item == 'email') {
+            error += '<div class = "alert alert-danger" <strong>' + errores.responseJSON.error[item] + '</strong></div>';
+            $('#email_error').append(error);
+        } else if (item == 'texto'){
+            error += '<div class = "alert alert-danger" <strong>' + errores.responseJSON.error[item] + '</strong></div>';
+            $('#texto_error').append(error);
+        }
     }
-    $('#erroresEdicion').append(error);
 }
 
 function cerrar_modal_edicion() {
@@ -16,7 +28,7 @@ function cerrar_modal_edicion() {
 
 function editar() {
     var form = $('#form_edicion').serialize();
-    //console.log("form: ", form);
+    console.log("form: ", form);
     $.ajax({
         data: $('#form_edicion').serialize(),
         url: $('#form_edicion').attr('action'),
